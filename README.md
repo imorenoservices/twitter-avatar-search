@@ -1,4 +1,8 @@
-# IsidroMorenoWeb
+# Web - Angular Test Assignment (Isidro Moreno)
+
+Test info: https://www.notion.so/Web-Angular-ReactJS-Test-Assignment-308d84eaa51c4f22b1f65d60efcd7186
+
+# Development Environment
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
 
