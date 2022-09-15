@@ -1,0 +1,8 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "prettier.requireConfig": true,
+  "prettier.singleQuote": true,
+  "eslint.codeActionsOnSave.rules": null,
+  "editor.detectIndentation": false
+}
