@@ -1,6 +1,6 @@
 export const consts = {
-    gitHubApi: {
-        SEARCH: 'search',
-        USERS: 'users'
-    }
+  gitHubApi: {
+    SEARCH: 'search',
+    USERS: 'users'
+  }
 };

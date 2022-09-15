@@ -7,15 +7,9 @@ import { AppComponent } from './app.component';
 import { GithubService } from './services/github.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [GithubService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
