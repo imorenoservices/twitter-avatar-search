@@ -4,6 +4,6 @@
   "prettier.requireConfig": true,
   "prettier.singleQuote": true,
   "eslint.codeActionsOnSave.rules": null,
-"editor.detectIndentation": false,
-"editor.tabSize": 2
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2
 }
