@@ -7,17 +7,6 @@ import { User } from './model/user';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'isidro-moreno-web';
-
-  userData: User | null = null;
-
-  constructor(private githubService: GithubService) {}
-
-  ngOnInit(): void {
-    this.githubService.findUserInLogin('morenoi').subscribe((userData) => {
-      this.userData = userData;
-      debugger;
-    });
-  }
 }

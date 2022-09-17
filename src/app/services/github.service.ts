@@ -22,21 +22,24 @@ export class GithubService {
   }
 
   findUserInLogin(userName: string) {
-    return this.http
-      .get<User>(`${GithubService.SEARCH_USER_URL}`, {
-        params: {
-          q: `${userName} ${consts.gitHubApi.IN_LOGIN}`,
-          [consts.gitHubApi.PAGE]: this.pageNumber,
-          [consts.gitHubApi.PER_PAGE]: this.itemsPerPage
-        },
-        observe: 'response'
-      })
-      .pipe(
-        tap((response) => {
-          this.responseHeaders = this.parseResponseHeaders(response.headers);
-        }),
-        map((response) => response.body)
-      );
+    return (
+      this.http
+        //   TODO:
+        .get<any>(`${GithubService.SEARCH_USER_URL}`, {
+          params: {
+            q: `${userName} ${consts.gitHubApi.IN_LOGIN}`,
+            [consts.gitHubApi.PAGE]: this.pageNumber,
+            [consts.gitHubApi.PER_PAGE]: this.itemsPerPage
+          },
+          observe: 'response'
+        })
+        .pipe(
+          tap((response) => {
+            this.responseHeaders = this.parseResponseHeaders(response.headers);
+          }),
+          map((response) => response.body.items)
+        )
+    );
   }
 
   parseResponseHeaders(headers: HttpHeaders): string {
