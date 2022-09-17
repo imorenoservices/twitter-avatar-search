@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:ci": "TODO:",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format": "prettier --write .",

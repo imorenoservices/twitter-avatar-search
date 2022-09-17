@@ -8,7 +8,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let user of userTable.data">
-      <td [headers]="'avatar ' + user.id">{{ user.avatar_url }}</td>
+      <td [headers]="'avatar ' + user.id">
+        <a [href]="user.avatar_url">{{ user.avatar_url }}</a>
+      </td>
       <td [headers]="'login ' + user.login">{{ user.login }}</td>
       <td [headers]="'type' + user.type">{{ user.type }}</td>
     </tr>
