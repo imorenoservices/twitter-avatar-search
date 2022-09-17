@@ -1,14 +1,21 @@
 # Web - Angular Test Assignment (Isidro Moreno)
 
-### Test info: https://www.notion.so/Web-Angular-ReactJS-Test-Assignment-308d84eaa51c4f22b1f65d60efcd7186
+> Test Assignment Description: https://www.notion.so/Web-Angular-ReactJS-Test-Assignment-308d84eaa51c4f22b1f65d60efcd7186
 
-# Tech Stack:
+## Tech Stack:
 
 - Angular: 13.3.11
 - ng-zorro: 13.4
 - Angular CLI: 13.3.9
 - rxjs 7.5.6
 - typescript 4.6.4
+
+### Code Quality tools:
+
+- "eslint": "^8.17.0"
+- "jasmine-core": "~4.0.0"
+- "lint-staged": "^13.0.3"
+- "prettier": "2.7.1"
 
 # Development Environment
 
