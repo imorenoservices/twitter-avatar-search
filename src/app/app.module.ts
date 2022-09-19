@@ -8,23 +8,24 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 import { AppComponent } from './app.component';
-import { GithubService } from './services/github.service';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { UserSearchResultsComponent } from './components/user-search-results/user-search-results.component';
-import { PaginationControlComponent } from './components/pagination-control/pagination-control.component';
+import { GithubService } from './services/github.service';
 
 registerLocaleData(en);
 
-const COMPONENTS = [UserSearchResultsComponent];
+const COMPONENTS = [UserSearchResultsComponent, PaginationComponent];
 
-const NGZORRO_MODULES = [NzTableModule, NzDividerModule, NzPaginationModule];
+const NGZORRO_MODULES = [NzTableModule, NzDividerModule, NzButtonModule, NzIconModule];
 
 @NgModule({
-  declarations: [AppComponent, ...COMPONENTS, PaginationControlComponent],
+  declarations: [AppComponent, ...COMPONENTS],
   imports: [
     BrowserModule,
     AppRoutingModule,
