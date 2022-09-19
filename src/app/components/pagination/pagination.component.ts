@@ -5,30 +5,25 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent {
-  @Input()
-  pageIndex: number = 0;
+export class PaginationComponent implements OnInit {
+  isFirstPage = true;
+  isLastPage = false;
 
-  @Input()
-  total: number = 0;
+  @Input() isLoading = false;
 
-  @Input()
-  first: string = '';
+  @Input() pageIndex: number = 1;
+  @Input() lastPageIndex: number = 10;
 
-  @Input()
-  last: string = '';
-
-  @Input()
-  prev: string = '';
-
-  @Input()
-  next: string = '';
-
-  @Input()
-  disabled: string = '';
+  @Input() first: string = '';
+  @Input() last: string = '';
+  @Input() prev: string = '';
+  @Input() next: string = '';
+  @Input() disabled: string = '';
 
   constructor() {}
 
-  // ngOnInit(): void {
-  // }
+  ngOnInit(): void {
+    this.isFirstPage = this.pageIndex === 1;
+    this.isLastPage = this.pageIndex === this.lastPageIndex;
+  }
 }

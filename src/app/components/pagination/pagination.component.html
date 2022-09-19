@@ -1,21 +1,21 @@
 <nz-button-group>
-  <button nz-button nzType="primary">
+  <button nz-button nzType="primary" [disabled]="isFirstPage || isLoading">
     <span nz-icon nzType="double-left"></span>
     First
   </button>
-  <button nz-button nzType="primary">
+  <button nz-button nzType="primary" [disabled]="isFirstPage || isLoading">
     <span nz-icon nzType="left"></span>
   </button>
-  <button nz-button nzType="default">
+  <button class="page-count" nz-button nzType="default">
     <span>Page&nbsp;</span>
-    <span>1</span>
+    <span>{{ pageIndex }}</span>
     <span>&nbsp;of&nbsp;</span>
-    <span>10</span>
+    <span>{{ lastPageIndex }}</span>
   </button>
-  <button nz-button nzType="primary">
+  <button nz-button nzType="primary" [disabled]="isLastPage || isLoading">
     <span nz-icon nzType="right"></span>
   </button>
-  <button nz-button nzType="primary">
+  <button nz-button nzType="primary" [disabled]="isLastPage || isLoading">
     Last
     <span nz-icon nzType="double-right"></span>
   </button>
