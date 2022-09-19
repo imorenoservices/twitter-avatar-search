@@ -7,23 +7,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { en_US } from 'ng-zorro-antd/i18n';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 import { AppComponent } from './app.component';
 import { GithubService } from './services/github.service';
 import { UserSearchResultsComponent } from './components/user-search-results/user-search-results.component';
+import { PaginationControlComponent } from './components/pagination-control/pagination-control.component';
 
 registerLocaleData(en);
 
 const COMPONENTS = [UserSearchResultsComponent];
 
-const NGZORRO_MODULES = [NzTableModule, NzDividerModule];
+const NGZORRO_MODULES = [NzTableModule, NzDividerModule, NzPaginationModule];
 
 @NgModule({
-  declarations: [AppComponent, ...COMPONENTS],
+  declarations: [AppComponent, ...COMPONENTS, PaginationControlComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

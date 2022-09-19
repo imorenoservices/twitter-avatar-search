@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, tap } from 'rxjs';
 
 import Link from 'http-link-header';
@@ -34,6 +34,10 @@ export class UserSearchResultsComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe();
+  }
+
+  onPageIndexChange(pageIndex: number) {
+    debugger;
   }
 
   ngOnDestroy(): void {

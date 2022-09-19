@@ -1,4 +1,4 @@
-<nz-table #userTable [nzData]="userResultList">
+<nz-table #userTable [nzFrontPagination]="false" [nzData]="userResultList">
   <thead>
     <tr>
       <th id="avatar">Avatar URL</th>
@@ -16,6 +16,22 @@
     </tr>
   </tbody>
 </nz-table>
+
+<!-- <nz-pagination [nzPageIndex]="1" [nzTotal]="51" [nzItemRender]="renderItemTemplate" [nzResponsive]="true"
+  [nzDisabled]="false" (nzPageIndexChange)="onPageIndexChange($event)">
+</nz-pagination>
+<ng-template #renderItemTemplate let-type let-page="page">
+  <ng-container [ngSwitch]="type">
+    <a *ngSwitchCase="'page'">{{ page }}</a>
+    <a *ngSwitchCase="'prev'">Previous</a>
+    <a *ngSwitchCase="'next'">Next</a>
+  </ng-container>
+</ng-template> -->
+<!-- MORE OPTIONS -->
+<!--
+    [nzSimple]="true"
+    [nzHideOnSinglePage]="false"
+  -->
 
 <!-- TODO: DEBUG -->
 <p>{{ paginationInfo | json }}</p>
