@@ -1,5 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, tap } from 'rxjs';
+
+import Link from 'http-link-header';
+
 import { User } from 'src/app/model/user';
 import { GithubService } from 'src/app/services/github.service';
 
@@ -11,6 +14,7 @@ export class UserSearchResultsComponent implements OnInit, OnDestroy {
   private searchSubscription = new Subscription();
 
   userResultList: User[] = [];
+  paginationInfo: Link | undefined;
 
   // TODO:
   emptyState = true;
@@ -22,9 +26,11 @@ export class UserSearchResultsComponent implements OnInit, OnDestroy {
     this.searchSubscription = this.githubService
       .findUserInLogin('morenoi')
       .pipe(
-        tap((results) => {
-          // TODO: pass pagination data from headers
-          this.userResultList = results;
+        tap((searchResultsData) => {
+          this.userResultList = searchResultsData.searchResults?.items || [];
+          this.paginationInfo = searchResultsData.paginationInfo;
+          // TODO: DEBUG
+          debugger;
         })
       )
       .subscribe();
