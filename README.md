@@ -2,7 +2,34 @@
 
 > Test Assignment Description: https://www.notion.so/Web-Angular-ReactJS-Test-Assignment-308d84eaa51c4f22b1f65d60efcd7186
 
-## Tech Stack:
+## Tech Approach Overview
+
+The following items describe the main tech guidelines I took in order to share skills and get feedback. I've performed tasks I'm used to perform on a daily basis. For that purpose I followed some steps that emulates real world tasks like:
+
+- setting up an Angular project from scratch
+- research and analize about tools that help accelerarate developemt (ng-zorro / http link header parser lib for GitHub API pagination metadata)
+- make commits following a unified and simple syntax (check repo history)
+- make use of pull requests and provide relevant information (kept them short for the purpose of the test)
+
+## High Level Project tasks
+
+### Project Scaffolding from scratch
+
+- Start from a brand new angular project from scratch
+- Add Code Quality Tools like Prettier, ESlint and integration of pre-commit hook (lint-staged)
+- Use ng-zorro as a main UI components library
+
+### Version Control and CI
+
+- GitHub:
+  - disable direct pushes to 'dev' and 'main' branches
+  - Follow "rebase/linear history" workflow though PRs to dev (check closed PRs)
+- Netlify:
+  - Integrate Netlify with respository
+  - Automatic "Netlify Deploy Previews" for each PR
+  - Netlify Deployment details integration to PRs as comments
+
+## Tech Stack Version:
 
 - Angular: 13.3.11
 - ng-zorro: 13.4
