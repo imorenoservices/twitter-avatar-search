@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LinksRelation } from '../../model/search-results-page';
 
 @Component({
   selector: 'app-pagination',
@@ -6,24 +7,26 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit {
+  public readonly LinksRelations = LinksRelation;
+
   isFirstPage = true;
   isLastPage = false;
 
   @Input() isLoading = false;
 
-  @Input() pageIndex: number = 1;
-  @Input() lastPageIndex: number = 10;
+  @Input() pageIndex: number = 2; // TODO:
+  @Input() lastPageIndex: number = 10; // TODO:
 
-  @Input() first: string = '';
-  @Input() last: string = '';
-  @Input() prev: string = '';
-  @Input() next: string = '';
-  @Input() disabled: string = '';
+  @Output() goToPage = new EventEmitter<LinksRelation>();
 
   constructor() {}
 
   ngOnInit(): void {
     this.isFirstPage = this.pageIndex === 1;
     this.isLastPage = this.pageIndex === this.lastPageIndex;
+  }
+
+  goTo(rel: LinksRelation) {
+    this.goToPage.emit(rel);
   }
 }

@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment';
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { map, Observable } from 'rxjs';
 
@@ -32,6 +32,12 @@ export class GithubService {
 
   constructor(private http: HttpClient) {}
 
+  fetchLink(linkUri: string) {
+    return this.http
+      .get<SearchResultsPage<User>>(linkUri, { observe: 'response' })
+      .pipe(map((response) => this.mapResponseToPaginationData(response)));
+  }
+
   findUserInLogin(userName: string, pageNumber = 1): Observable<SearchResultsPaginationData<User>> {
     return this.http
       .get<SearchResultsPage<User>>(`${GithubService.SEARCH_USER_URL}`, {
@@ -42,16 +48,16 @@ export class GithubService {
         },
         observe: 'response'
       })
-      .pipe(
-        map((response) => {
-          const paginationInfo = this.parseResponseHeaders(response.headers);
-          const result: SearchResultsPaginationData<User> = {
-            paginationInfo,
-            searchResults: response.body as SearchResults<User>
-          };
-          return result;
-        })
-      );
+      .pipe(map((response) => this.mapResponseToPaginationData(response)));
+  }
+
+  private mapResponseToPaginationData(response: HttpResponse<SearchResultsPage<User>>) {
+    const paginationInfo = this.parseResponseHeaders(response.headers);
+    const result: SearchResultsPaginationData<User> = {
+      paginationInfo,
+      searchResults: response.body as SearchResults<User>
+    };
+    return result;
   }
 
   /**
@@ -59,8 +65,8 @@ export class GithubService {
    * @param headers
    * @returns parsed HTTP link headers according to RFC 8288
    */
-  parseResponseHeaders(headers: HttpHeaders): Link | undefined {
+  private parseResponseHeaders(headers: HttpHeaders): Link | null {
     const linkHeaders = headers.get(consts.gitHubApi.HEADER_LINK);
-    return linkHeaders && linkHeaders.length ? Link.parse(linkHeaders) : undefined;
+    return linkHeaders && linkHeaders.length ? Link.parse(linkHeaders) : null; // TODO: Need to dig more in order to simplify this line.
   }
 }

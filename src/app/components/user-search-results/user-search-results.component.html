@@ -1,38 +1,23 @@
-<nz-table #userTable [nzFrontPagination]="false" [nzData]="userResultList">
-  <thead>
-    <tr>
-      <th id="avatar">Avatar URL</th>
-      <th id="login">Login</th>
-      <th id="type">Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of userTable.data">
-      <td [headers]="'avatar ' + user.id">
-        <a [href]="user.avatar_url">{{ user.avatar_url }}</a>
-      </td>
-      <td [headers]="'login ' + user.login">{{ user.login }}</td>
-      <td [headers]="'type' + user.type">{{ user.type }}</td>
-    </tr>
-  </tbody>
-</nz-table>
-<app-pagination></app-pagination>
-
-<!-- <nz-pagination [nzPageIndex]="1" [nzTotal]="51" [nzItemRender]="renderItemTemplate" [nzResponsive]="true"
-  [nzDisabled]="false" (nzPageIndexChange)="onPageIndexChange($event)">
-</nz-pagination>
-<ng-template #renderItemTemplate let-type let-page="page">
-  <ng-container [ngSwitch]="type">
-    <a *ngSwitchCase="'page'">{{ page }}</a>
-    <a *ngSwitchCase="'prev'">Previous</a>
-    <a *ngSwitchCase="'next'">Next</a>
+<ng-container *ngIf="userResultList">
+  <nz-table #userTable [nzFrontPagination]="false" [nzData]="userResultList">
+    <thead>
+      <tr>
+        <th id="avatar">Avatar URL</th>
+        <th id="login">Login</th>
+        <th id="type">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userTable.data">
+        <td [headers]="'avatar ' + user.id">
+          <a [href]="user.avatar_url">{{ user.avatar_url }}</a>
+        </td>
+        <td [headers]="'login ' + user.login">{{ user.login }}</td>
+        <td [headers]="'type' + user.type">{{ user.type }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <ng-container *ngIf="paginationLinks">
+    <app-pagination (goToPage)="goToLink($event)" [isLoading]="false"></app-pagination>
   </ng-container>
-</ng-template> -->
-<!-- MORE OPTIONS -->
-<!--
-    [nzSimple]="true"
-    [nzHideOnSinglePage]="false"
-  -->
-
-<!-- TODO: DEBUG -->
-<p>{{ paginationInfo | json }}</p>
+</ng-container>

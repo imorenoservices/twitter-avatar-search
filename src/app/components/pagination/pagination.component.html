@@ -1,9 +1,9 @@
 <nz-button-group>
-  <button nz-button nzType="primary" [disabled]="isFirstPage || isLoading">
+  <button nz-button nzType="primary" (click)="goTo(LinksRelations.FIRST)" [disabled]="isFirstPage || isLoading">
     <span nz-icon nzType="double-left"></span>
     First
   </button>
-  <button nz-button nzType="primary" [disabled]="isFirstPage || isLoading">
+  <button nz-button nzType="primary" (click)="goTo(LinksRelations.PREV)" [disabled]="isFirstPage || isLoading">
     <span nz-icon nzType="left"></span>
   </button>
   <button class="page-count" nz-button nzType="default">
@@ -12,10 +12,16 @@
     <span>&nbsp;of&nbsp;</span>
     <span>{{ lastPageIndex }}</span>
   </button>
-  <button nz-button nzType="primary" [disabled]="isLastPage || isLoading">
+  <button nz-button nzType="primary" [disabled]="isLastPage || isLoading" (click)="goTo(LinksRelations.NEXT)">
     <span nz-icon nzType="right"></span>
   </button>
-  <button nz-button nzType="primary" [disabled]="isLastPage || isLoading">
+  <button
+    nz-button
+    nzType="primary"
+    type="button"
+    (click)="goTo(LinksRelations.LAST)"
+    [disabled]="isLastPage || isLoading"
+  >
     Last
     <span nz-icon nzType="double-right"></span>
   </button>
