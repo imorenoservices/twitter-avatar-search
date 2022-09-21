@@ -14,13 +14,14 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 import { AppComponent } from './app.component';
+import { ResultsComponent } from './components/results/results.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { UserSearchResultsComponent } from './components/user-search-results/user-search-results.component';
+
 import { GithubService } from './services/github.service';
 
 registerLocaleData(en);
 
-const COMPONENTS = [UserSearchResultsComponent, PaginationComponent];
+const COMPONENTS = [ResultsComponent, PaginationComponent];
 
 const NGZORRO_MODULES = [NzTableModule, NzDividerModule, NzButtonModule, NzIconModule];
 

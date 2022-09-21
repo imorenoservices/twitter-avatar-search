@@ -1,19 +1,19 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, tap, Observable, of } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription, tap } from 'rxjs';
 
 import Link from 'http-link-header';
 
 import { User } from 'src/app/model/user';
 import { GithubService } from 'src/app/services/github.service';
 import { getUriFromRel } from 'src/app/utils/link-to-view.mapper';
-import { LinksRelation, SearchResultsPaginationData } from '../../model/search-results-page';
 import { consts } from '../../consts';
+import { LinksRelation, SearchResultsPaginationData } from '../../model/search-results-page';
 
 @Component({
-  selector: 'app-user-search-results',
-  templateUrl: './user-search-results.component.html'
+  selector: 'app-results',
+  templateUrl: './results.component.html'
 })
-export class UserSearchResultsComponent implements OnInit, OnDestroy {
+export class ResultsComponent implements OnInit, OnDestroy {
   private searchSubscription = new Subscription();
 
   userResultList: User[] | null = null;
@@ -21,7 +21,7 @@ export class UserSearchResultsComponent implements OnInit, OnDestroy {
   currentPage$: Observable<number>;
   totalPages = 1;
 
-  constructor(private githubService: GithubService, private cdr: ChangeDetectorRef) {
+  constructor(private githubService: GithubService) {
     this.currentPage$ = this.githubService.currentPageSubject.asObservable();
   }
 

@@ -1,16 +1,16 @@
 import { fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { UserSearchResultsComponent } from './user-search-results.component';
+import { ResultsComponent } from './results.component';
 
 describe('UserSearchResultsComponent', () => {
-  let component: UserSearchResultsComponent;
-  let fixture: ComponentFixture<UserSearchResultsComponent>;
+  let component: ResultsComponent;
+  let fixture: ComponentFixture<ResultsComponent>;
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [UserSearchResultsComponent]
+      declarations: [ResultsComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UserSearchResultsComponent);
+    fixture = TestBed.createComponent(ResultsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
