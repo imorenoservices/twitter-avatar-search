@@ -3,10 +3,10 @@ import { Observable, Subscription, tap } from 'rxjs';
 
 import Link from 'http-link-header';
 
+import { consts } from '../../consts';
 import { User } from 'src/app/model/user';
 import { GithubService } from 'src/app/services/github.service';
 import { getUriFromRel } from 'src/app/utils/link-to-view.mapper';
-import { consts } from '../../consts';
 import { LinksRelation, SearchResultsPaginationData } from '../../model/search-results-page';
 
 @Component({
