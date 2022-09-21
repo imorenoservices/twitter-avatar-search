@@ -18,6 +18,7 @@
     </tbody>
   </nz-table>
   <ng-container *ngIf="paginationLinks">
-    <app-pagination (goToPage)="goToLink($event)" [isLoading]="false"></app-pagination>
+    <app-pagination [currentPage$]="currentPage$" [lastPageIndex]="totalPages" (goToPage)="goToLink($event)">
+    </app-pagination>
   </ng-container>
 </ng-container>

@@ -3,13 +3,14 @@ import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 import Link from 'http-link-header';
 
 import { consts } from '../consts';
 import { User, SearchResultsPage } from '../model';
 import { SearchResultsPaginationData, SearchResults } from '../model/search-results-page';
+import { getPageNumberFromLinkUri } from '../utils/link-to-view.mapper';
 
 /**
  * (!) ABOUT TRAVERSING FROM PAGINATION
@@ -27,15 +28,17 @@ export class GithubService {
 
   private readonly itemsPerPage = consts.paginationConfig.itemsPerPage;
 
-  // private pageNumber = '1';
-  // private responseHeaders: any; // TODO:
+  currentPageSubject = new BehaviorSubject<number>(1);
 
   constructor(private http: HttpClient) {}
 
-  fetchLink(linkUri: string) {
-    return this.http
-      .get<SearchResultsPage<User>>(linkUri, { observe: 'response' })
-      .pipe(map((response) => this.mapResponseToPaginationData(response)));
+  fetchLinkUri(linkUri: string) {
+    return this.http.get<SearchResultsPage<User>>(linkUri, { observe: 'response' }).pipe(
+      map((response) => {
+        this.currentPageSubject.next(getPageNumberFromLinkUri(linkUri));
+        return this.mapResponseToPaginationData(response);
+      })
+    );
   }
 
   findUserInLogin(userName: string, pageNumber = 1): Observable<SearchResultsPaginationData<User>> {

@@ -1,28 +1,29 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, tap } from 'rxjs';
+import { Subscription, tap, Observable, of } from 'rxjs';
 
 import Link from 'http-link-header';
+
 import { User } from 'src/app/model/user';
 import { GithubService } from 'src/app/services/github.service';
 import { getUriFromRel } from 'src/app/utils/link-to-view.mapper';
 import { LinksRelation, SearchResultsPaginationData } from '../../model/search-results-page';
+import { consts } from '../../consts';
 
 @Component({
   selector: 'app-user-search-results',
-  templateUrl: './user-search-results.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './user-search-results.component.html'
 })
 export class UserSearchResultsComponent implements OnInit, OnDestroy {
   private searchSubscription = new Subscription();
 
   userResultList: User[] | null = null;
   paginationLinks: Link | null = null;
+  currentPage$: Observable<number>;
+  totalPages = 1;
 
-  // TODO:
-  emptyState = true;
-  noResults = false;
-
-  constructor(private githubService: GithubService, private cdr: ChangeDetectorRef) {}
+  constructor(private githubService: GithubService, private cdr: ChangeDetectorRef) {
+    this.currentPage$ = this.githubService.currentPageSubject.asObservable();
+  }
 
   ngOnInit(): void {
     this.searchSubscription = this.githubService
@@ -34,22 +35,25 @@ export class UserSearchResultsComponent implements OnInit, OnDestroy {
   private updateTableAndPaginationControls(searchResultsData: SearchResultsPaginationData<User>) {
     this.userResultList = searchResultsData.searchResults?.items || [];
     this.paginationLinks = searchResultsData.paginationInfo || null;
-    this.cdr.detectChanges();
 
-    // TODO: DEBUG
-    debugger;
+    const totalCount = searchResultsData.searchResults?.total_count;
+    this.totalPages = totalCount ? this.getLastPageIndex(totalCount) : 1;
   }
 
   goToLink(rel: LinksRelation) {
     if (this.paginationLinks) {
       const linkUri = getUriFromRel(this.paginationLinks, rel);
       this.githubService
-        .fetchLink(linkUri)
+        .fetchLinkUri(linkUri)
         .pipe(tap((searchResultsData) => this.updateTableAndPaginationControls(searchResultsData)))
         .subscribe();
     } else {
       throw new Error(`No link provided for ${rel} relation`);
     }
+  }
+
+  private getLastPageIndex(totalCount: number): number {
+    return Math.round(totalCount / consts.paginationConfig.itemsPerPage) + 1;
   }
 
   ngOnDestroy(): void {

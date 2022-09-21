@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, OnDestroy } from '@angular/core';
+import { of, tap, Subscription } from 'rxjs';
 import { LinksRelation } from '../../model/search-results-page';
 
 @Component({
@@ -6,27 +7,43 @@ import { LinksRelation } from '../../model/search-results-page';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit, OnDestroy {
   public readonly LinksRelations = LinksRelation;
 
+  currentPage = 1;
   isFirstPage = true;
   isLastPage = false;
 
-  @Input() isLoading = false;
+  currentPageSubscription = new Subscription();
 
-  @Input() pageIndex: number = 2; // TODO:
-  @Input() lastPageIndex: number = 10; // TODO:
+  @Input() currentPage$ = of(1);
+  @Input() lastPageIndex = 1;
 
   @Output() goToPage = new EventEmitter<LinksRelation>();
 
-  constructor() {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.isFirstPage = this.pageIndex === 1;
-    this.isLastPage = this.pageIndex === this.lastPageIndex;
+    this.currentPage$
+      .pipe(
+        tap((value) => {
+          this.currentPage = value;
+          this.updateFirstAndLastPages(value);
+        })
+      )
+      .subscribe();
   }
 
   goTo(rel: LinksRelation) {
     this.goToPage.emit(rel);
+  }
+
+  ngOnDestroy(): void {
+    this.currentPageSubscription.unsubscribe();
+  }
+
+  private updateFirstAndLastPages(currentPage: number) {
+    this.isFirstPage = currentPage === 1;
+    this.isLastPage = currentPage === this.lastPageIndex;
   }
 }
