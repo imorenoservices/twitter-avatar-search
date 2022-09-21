@@ -8,6 +8,8 @@ The following items describe the main tech guidelines I took in order to share s
 
 - setting up an Angular project from scratch
 - research and analize about tools that help accelerarate developemt (ng-zorro / http link header parser lib for GitHub API pagination metadata)
+- develop custom components that adjusts to API features/restrictions
+  - **Besides the fact ng-zorro provides several options for navigation through pages. I took advantage of GitHub's Paginations features and restrictions in order to develop a custom navigation component that fits page navigation metadata provided in GitHub's API response headers. (GitHub docs encourages to use those headers for navigation instead of building a URL on client side)**
 - make commits following a unified and simple syntax (check repo history)
 - make use of pull requests and provide relevant information (kept them short for the purpose of the test)
 
