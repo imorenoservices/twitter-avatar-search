@@ -27,7 +27,6 @@ export class PaginationComponent implements OnInit, OnDestroy {
     this.currentPageSubscription = this.currentPage$.subscribe((value) => {
       this.currentPage = value;
       this.updateFirstAndLastPages(value);
-      console.log('current update');
     });
   }
 

@@ -9,8 +9,10 @@
   <button class="page-count" nz-button nzType="default">
     <span>Page&nbsp;</span>
     <span>{{ currentPage }}</span>
-    <span>&nbsp;of&nbsp;</span>
-    <span>{{ lastPageIndex }}</span>
+    <ng-container *ngIf="lastPageIndex">
+      <span>&nbsp;of&nbsp;</span>
+      <span>{{ lastPageIndex }}</span>
+    </ng-container>
   </button>
   <button nz-button nzType="primary" [disabled]="isLastPage" (click)="goTo(LinksRelations.NEXT)">
     <span nz-icon nzType="right"></span>

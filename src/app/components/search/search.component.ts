@@ -21,7 +21,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.login.reset();
-    console.log('init value: ' + this.login.value);
   }
 
   ngOnDestroy(): void {

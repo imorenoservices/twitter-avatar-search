@@ -2,18 +2,18 @@
   <nz-table #userTable [nzFrontPagination]="false" [nzData]="userResultList">
     <thead>
       <tr>
-        <th id="avatar">Avatar URL</th>
         <th id="login">Login</th>
         <th id="type">Type</th>
+        <th id="avatar">Avatar URL</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of userTable.data">
+        <td [headers]="'login ' + user.login">{{ user.login }}</td>
+        <td [headers]="'type' + user.type">{{ user.type }}</td>
         <td [headers]="'avatar ' + user.id">
           <a [href]="user.avatar_url">{{ user.avatar_url }}</a>
         </td>
-        <td [headers]="'login ' + user.login">{{ user.login }}</td>
-        <td [headers]="'type' + user.type">{{ user.type }}</td>
       </tr>
     </tbody>
   </nz-table>

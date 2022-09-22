@@ -5,7 +5,7 @@ import { consts } from './consts';
 import { LinksRelation, SearchResultsPaginationData } from './model/search-results-page';
 import { User } from './model/user';
 import { GithubService } from './services/github.service';
-import { getUriFromRel } from './utils/link-headers-helper';
+import { getUriFromRel, getPageNumberFromLinkUri } from './utils/link-headers-helper';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,7 @@ export class AppComponent implements OnDestroy {
 
   paginationLinks: Link | null = null;
   userResultList: User[] | null = null;
-  totalPages = 1;
+  totalPages = 0; // TODO:
   paginationEnabled = false;
 
   title = 'isidro-moreno-web';
@@ -52,15 +52,23 @@ export class AppComponent implements OnDestroy {
     }
   }
 
-  private getLastPageIndex(totalCount: number): number {
-    return Math.round(totalCount / consts.paginationConfig.itemsPerPage) + 1;
-  }
-
+  // TODO: Narrow search warn/info notification
+  // Display notification if GitHub API retrieves less items than expected.
+  // That can be done if last page index is lower than a calculation result
+  // of dividing 'searchResultsData.searchResults.total_count' by items per page value
   private updateTableAndPaginationControls(searchResultsData: SearchResultsPaginationData<User>) {
     this.userResultList = searchResultsData.searchResults?.items || [];
     this.paginationLinks = searchResultsData.paginationInfo || null;
+    if (this.paginationLinks && this.totalPages === 0) {
+      this.totalPages = this.getLastPageIndex(this.paginationLinks);
+    }
+  }
 
-    const totalCount = searchResultsData.searchResults?.total_count;
-    this.totalPages = totalCount ? this.getLastPageIndex(totalCount) : 1;
+  private getLastPageIndex(links: Link): number {
+    const lastPage = getUriFromRel(links, LinksRelation.LAST);
+    if (lastPage) {
+      return getPageNumberFromLinkUri(lastPage);
+    }
+    return 0;
   }
 }
