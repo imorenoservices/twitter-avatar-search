@@ -10,7 +10,7 @@ import Link from 'http-link-header';
 import { consts } from '../consts';
 import { User, SearchResultsPage } from '../model';
 import { SearchResultsPaginationData, SearchResults } from '../model/search-results-page';
-import { getPageNumberFromLinkUri } from '../utils/link-to-view.mapper';
+import { getPageNumberFromLinkUri } from '../utils/link-headers-helper';
 
 /**
  * (!) ABOUT TRAVERSING FROM PAGINATION

@@ -1,1 +1,8 @@
-<p>search works!</p>
+<form autocomplete="off" nz-form (ngSubmit)="triggerSearch()" [formGroup]="loginForm">
+  <nz-input-group nzSearch [nzSuffix]="searchTpl">
+    <input nz-input formControlName="login" type="text" placeholder="Login" />
+    <ng-template #searchTpl>
+      <button nz-button nzType="primary" type="submit" nzSearch>Search</button>
+    </ng-template>
+  </nz-input-group>
+</form>

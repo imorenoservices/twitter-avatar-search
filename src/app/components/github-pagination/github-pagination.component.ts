@@ -3,9 +3,9 @@ import { of, tap, Subscription } from 'rxjs';
 import { LinksRelation } from '../../model/search-results-page';
 
 @Component({
-  selector: 'app-pagination',
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
+  selector: 'app-github-pagination',
+  templateUrl: './github-pagination.component.html',
+  styleUrls: ['./github-pagination.component.scss']
 })
 export class PaginationComponent implements OnInit, OnDestroy {
   public readonly LinksRelations = LinksRelation;
@@ -24,14 +24,11 @@ export class PaginationComponent implements OnInit, OnDestroy {
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.currentPage$
-      .pipe(
-        tap((value) => {
-          this.currentPage = value;
-          this.updateFirstAndLastPages(value);
-        })
-      )
-      .subscribe();
+    this.currentPageSubscription = this.currentPage$.subscribe((value) => {
+      this.currentPage = value;
+      this.updateFirstAndLastPages(value);
+      console.log('current update');
+    });
   }
 
   goTo(rel: LinksRelation) {

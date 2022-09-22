@@ -1,2 +1,9 @@
-<app-results></app-results>
-<!-- <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg" /> -->
+<app-search (search)="searchLogin($event)"></app-search>
+<app-results
+  [userResultList]="userResultList"
+  [paginationEnabled]="paginationEnabled"
+  [currentPage$]="currentPage$"
+  [totalPages]="totalPages"
+  (goToPage)="goToLink($event)"
+>
+</app-results>
