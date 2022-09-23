@@ -1,24 +1,25 @@
-import { NgModule } from '@angular/core';
 import en from '@angular/common/locales/en';
 import { registerLocaleData } from '@angular/common';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import * as AllIcons from '@ant-design/icons-angular/icons';
+import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { IconDefinition } from '@ant-design/icons-angular';
-import * as AllIcons from '@ant-design/icons-angular/icons';
 
 import { AppComponent } from './app.component';
 import { GithubService } from './services/github.service';
-import { ResultsComponent, SearchComponent, PaginationComponent } from './components';
+
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { ErrorHandlerService } from './services/error-handler.service';
+
+import { NGZORRO_MODULES } from './ng-zorro';
+import { COMPONENTS } from './components';
 
 registerLocaleData(en);
 
@@ -28,10 +29,6 @@ const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key) => antDesignIcons[key]);
-
-const COMPONENTS = [ResultsComponent, PaginationComponent, SearchComponent];
-
-const NGZORRO_MODULES = [NzTableModule, NzDividerModule, NzButtonModule, NzIconModule, NzInputModule];
 
 @NgModule({
   declarations: [AppComponent, ...COMPONENTS],
@@ -45,7 +42,12 @@ const NGZORRO_MODULES = [NzTableModule, NzDividerModule, NzButtonModule, NzIconM
     NzIconModule.forRoot(icons),
     ...NGZORRO_MODULES
   ],
-  providers: [GithubService, { provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: ErrorHandler, useClass: ErrorHandlerService },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    GithubService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

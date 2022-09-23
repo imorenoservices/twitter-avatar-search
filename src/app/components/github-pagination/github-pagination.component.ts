@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, OnDestroy } from '@angular/core';
-import { of, tap, Subscription } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import { LinksRelation } from '../../model/search-results-page';
 
 @Component({

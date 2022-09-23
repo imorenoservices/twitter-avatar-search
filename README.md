@@ -19,22 +19,22 @@ Features released:
 
 ## Tech Approach Overview
 
-The following items describe the main tech guidelines I took in order to share skills and get feedback. I've performed tasks I'm used to perform on a daily basis. For that purpose I followed some steps that emulates real world tasks like:
+The following items describe the main tech guidelines I took in order to share skills and get feedback. I've performed tasks I'm used to performing on a daily basis. For that purpose I followed some steps that emulate real world tasks like:
 
 - setting up an Angular project from scratch
-- research and analize about tools that help accelerarate developemt (ng-zorro / http link header parser lib for GitHub API pagination metadata)
-- develop custom components that adjusts to API features/restrictions
-  - **Besides the fact ng-zorro provides several options for navigation through pages. I took advantage of GitHub's Paginations features and restrictions in order to develop a custom navigation component that fits page navigation metadata provided in GitHub's API response headers. (GitHub docs encourages to use those headers for navigation instead of building a URL on client side)**
+- research and analyze about tools that help accelerate development (ng-zorro / http link header parser lib for GitHub API pagination metadata)
+- develop custom components that adjust to API features/restrictions
+  - **Besides the fact ng-zorro provides several options for navigation through pages. I took advantage of GitHub's Pagination features and restrictions in order to develop a custom navigation component that fits page navigation metadata provided in GitHub's API response headers. (GitHub docs encourages to use those headers for navigation instead of building a URL on client side)**
 - make commits following a unified and simple syntax (check repo history)
 - use pull requests and provide relevant information (kept them short for the purpose of the test)
-  - Example: (check for closed PRs or go to the bottom of this page where I put a screenshot. Thanks!
+  - Example: check for closed PRs or go to the bottom of this page where I put a screenshot. Thanks!
 
 ## High Level Project tasks
 
 ### Project Scaffolding from scratch
 
 - Start from a brand new angular project from scratch
-- Add Code Quality Tools like Prettier, ESlint and integration of pre-commit hook (lint-staged)
+- Add Code Quality Tools like Prettier, ESLint and integration of pre-commit hook (lint-staged)
 - Use ng-zorro as a main UI components library
 
 ### Version Control and CI
@@ -43,7 +43,7 @@ The following items describe the main tech guidelines I took in order to share s
   - disable direct pushes to 'dev' and 'main' branches
   - Follow "rebase/linear history" workflow though PRs to dev (check closed PRs)
 - Netlify:
-  - Integrate Netlify with respository
+  - Integrate Netlify with repository
   - Automatic "Netlify Deploy Previews" for each PR
   - Netlify Deployment details integration to PRs as comments
 

@@ -1,0 +1,9 @@
+<app-search (search)="searchLogin($event)"></app-search>
+<app-results
+  [userResultList]="userResultList"
+  [paginationEnabled]="paginationEnabled"
+  [currentPage$]="currentPage$"
+  [totalPages]="totalPages"
+  (goToPage)="goToLink($event)"
+>
+</app-results>
