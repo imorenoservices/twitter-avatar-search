@@ -1,6 +1,21 @@
 # Web - Angular Test Assignment (Isidro Moreno)
 
-> Test Assignment Description: https://www.notion.so/Web-Angular-ReactJS-Test-Assignment-308d84eaa51c4f22b1f65d60efcd7186
+### Test Assignment:
+
+> https://www.notion.so/Web-Angular-ReactJS-Test-Assignment-308d84eaa51c4f22b1f65d60efcd7186
+
+# Features summary;
+
+**First functional feature for searching GitHub users and displaying paginated search results.**
+
+Features released:
+
+- Search input component that triggers API query given a username string input.
+- Results component:
+  - Display paginated results in a table if input `string` matches a username (Search API `login` field). More info at https://docs.github.com/en/search-github/searching-on-github/searching-users#search-by-account-name-full-name-or-public-email
+  - Provide page navigation through custom pagination component (navigation information is retrieved from API response headers - see more in [README](https://github.com/imorenoservices/isidro-moreno-web/blob/v1.0.0-alpha/README.md))
+
+# Project Information
 
 ## Tech Approach Overview
 
@@ -11,7 +26,8 @@ The following items describe the main tech guidelines I took in order to share s
 - develop custom components that adjusts to API features/restrictions
   - **Besides the fact ng-zorro provides several options for navigation through pages. I took advantage of GitHub's Paginations features and restrictions in order to develop a custom navigation component that fits page navigation metadata provided in GitHub's API response headers. (GitHub docs encourages to use those headers for navigation instead of building a URL on client side)**
 - make commits following a unified and simple syntax (check repo history)
-- make use of pull requests and provide relevant information (kept them short for the purpose of the test)
+- use pull requests and provide relevant information (kept them short for the purpose of the test)
+  - Example: (check for closed PRs or go to the bottom of this page where I put a screenshot. Thanks!
 
 ## High Level Project tasks
 
@@ -31,7 +47,16 @@ The following items describe the main tech guidelines I took in order to share s
   - Automatic "Netlify Deploy Previews" for each PR
   - Netlify Deployment details integration to PRs as comments
 
-## Tech Stack Version:
+# Development Environment
+
+This project was generated with: [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
+
+### System Requirements
+
+- Node: 16.14.2
+- Package Manager: npm 8.5.0
+
+### Tech Stack & Versions
 
 - Angular: 13.3.11
 - ng-zorro: 13.4
@@ -39,30 +64,27 @@ The following items describe the main tech guidelines I took in order to share s
 - rxjs 7.5.6
 - typescript 4.6.4
 
-### Code Quality tools:
+### Code Quality & QA tools
 
-- "eslint": "^8.17.0"
-- "jasmine-core": "~4.0.0"
-- "lint-staged": "^13.0.3"
-- "prettier": "2.7.1"
+- ESLint
+- Prettier
+- Jasmine
+- lint-staged
 
-# Development Environment
-
-This project was generated with: [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
-
-## System Requirements:
-
-- Node: 16.14.2
-- Package Manager: npm 8.5.0
-
-## Development server
+### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+# Attachments / Other notes
+
+## Pull Request Example:
+
+![image](https://user-images.githubusercontent.com/30235159/191181699-47870fb1-588b-428b-92aa-811a06deecd4.png)
