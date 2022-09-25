@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NGZORRO_MODULES } from 'src/app/ng-zorro';
 
 import { UnauthorizedErrorComponent } from './unauthorized-error.component';
 
@@ -8,7 +9,8 @@ describe('UnauthorizedErrorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UnauthorizedErrorComponent]
+      declarations: [UnauthorizedErrorComponent],
+      imports: [...NGZORRO_MODULES]
     }).compileComponents();
 
     fixture = TestBed.createComponent(UnauthorizedErrorComponent);

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NGZORRO_MODULES } from 'src/app/ng-zorro';
 
 import { OfflineErrorComponent } from './offline-error.component';
 
@@ -8,7 +9,8 @@ describe('OfflineErrorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OfflineErrorComponent]
+      declarations: [OfflineErrorComponent],
+      imports: [...NGZORRO_MODULES]
     }).compileComponents();
 
     fixture = TestBed.createComponent(OfflineErrorComponent);

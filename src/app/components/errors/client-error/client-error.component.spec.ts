@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NGZORRO_MODULES } from 'src/app/ng-zorro';
 
 import { ClientErrorComponent } from './client-error.component';
 
@@ -8,7 +9,8 @@ describe('ClientErrorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ClientErrorComponent]
+      declarations: [ClientErrorComponent],
+      imports: [...NGZORRO_MODULES]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ClientErrorComponent);
