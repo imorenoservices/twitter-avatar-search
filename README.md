@@ -1,5 +1,7 @@
 # Web - Angular Test Assignment (Isidro Moreno)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/11df3328-7411-4a89-8686-5d32236b7140/deploy-status)](https://app.netlify.com/sites/wondrous-kitsune-c7984a/deploys)
+
 ### Test Assignment:
 
 > https://www.notion.so/Web-Angular-ReactJS-Test-Assignment-308d84eaa51c4f22b1f65d60efcd7186

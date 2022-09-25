@@ -9,7 +9,7 @@ import { ROUTE_NAMES } from '../routes';
 export class ErrorHandlerService implements ErrorHandler {
   constructor(private injector: Injector) {}
 
-  handleError(error: HttpErrorResponse | Error): void {
+  handleError(error: HttpErrorResponse): void {
     const router = this.injector.get(Router);
 
     if (error instanceof HttpErrorResponse) {
@@ -32,8 +32,6 @@ export class ErrorHandlerService implements ErrorHandler {
         default:
           break;
       }
-    } else {
-      router.navigate([ROUTE_NAMES.ERROR, ROUTE_NAMES.CLIENT_ERROR]);
     }
   }
 }
