@@ -1,6 +1,6 @@
 # Web - Angular Test Assignment (Isidro Moreno)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/11df3328-7411-4a89-8686-5d32236b7140/deploy-status)](https://app.netlify.com/sites/wondrous-kitsune-c7984a/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/11df3328-7411-4a89-8686-5d32236b7140/deploy-status)](https://app.netlify.com/sites/wondrous-kitsune-c7984a/deploys) [!Build checks](https://github.com/imorenoservices/isidro-moreno-web/actions/workflows/node.js.yml/badge.svg)
 
 ### Test Assignment:
 
@@ -42,6 +42,7 @@ The following items describe the main tech guidelines I took in order to share s
 ### Version Control and CI
 
 - GitHub:
+  - Enable GitHub Actions for build checks (Code coverage, Unit Tests, Code formatting checks, other Node CI GitHub Actions)
   - disable direct pushes to 'dev' and 'main' branches
   - Follow "rebase/linear history" workflow though PRs to dev (check closed PRs)
 - Netlify:
