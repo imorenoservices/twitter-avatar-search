@@ -10,7 +10,15 @@ const jestConfig: Config = {
     '^assets/(.*)$': '<rootDir>/src/assets/$1',
     '^environments/(.*)$': '<rootDir>/src/environments/$1'
   },
-  collectCoverage: true
+  collectCoverage: true,
+  coverageThreshold: {
+    global: {
+      branches: 50,
+      functions: 50,
+      lines: 50,
+      statements: 50
+    }
+  }
 };
 
 export default jestConfig;
