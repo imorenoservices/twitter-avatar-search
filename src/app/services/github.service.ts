@@ -1,16 +1,13 @@
 import { environment } from 'src/environments/environment';
 
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { BehaviorSubject, map, Observable } from 'rxjs';
 
-import Link from 'http-link-header';
-
 import { consts } from '../consts';
-import { User, SearchResultsPage } from '../model';
-import { SearchResultsPaginationData, SearchResults } from '../model/search-results-page';
-import { getPageNumberFromLinkUri } from '../utils/link-headers-helper';
+import { SearchResults, SearchResultsPaginationData, User } from '../model';
+import { getPageNumberFromLinkUri, parseResponseHeaders } from '../utils/link-headers-helper';
 
 /**
  * (!) ABOUT TRAVERSING FROM PAGINATION
@@ -33,7 +30,7 @@ export class GithubService {
   constructor(private http: HttpClient) {}
 
   fetchLinkUri(linkUri: string) {
-    return this.http.get<SearchResultsPage<User>>(linkUri, { observe: 'response' }).pipe(
+    return this.http.get<SearchResults<User>>(linkUri, { observe: 'response' }).pipe(
       map((response) => {
         this.currentPageSubject.next(getPageNumberFromLinkUri(linkUri));
         return this.mapResponseToPaginationData(response);
@@ -43,7 +40,7 @@ export class GithubService {
 
   findUserInLogin(userName: string, pageNumber = 1): Observable<SearchResultsPaginationData<User>> {
     return this.http
-      .get<SearchResultsPage<User>>(`${GithubService.SEARCH_USER_URL}`, {
+      .get<SearchResults<User>>(`${GithubService.SEARCH_USER_URL}`, {
         params: {
           q: `${userName} ${consts.gitHubApi.IN_LOGIN}`,
           [consts.gitHubApi.PAGE]: pageNumber,
@@ -54,22 +51,12 @@ export class GithubService {
       .pipe(map((response) => this.mapResponseToPaginationData(response)));
   }
 
-  private mapResponseToPaginationData(response: HttpResponse<SearchResultsPage<User>>) {
-    const paginationInfo = this.parseResponseHeaders(response.headers);
+  private mapResponseToPaginationData(response: HttpResponse<SearchResults<User>>) {
+    const paginationInfo = parseResponseHeaders(response.headers);
     const result: SearchResultsPaginationData<User> = {
       paginationInfo,
       searchResults: response.body as SearchResults<User>
     };
     return result;
-  }
-
-  /**
-   * https://github.com/jhermsmeier/node-http-link-header
-   * @param headers
-   * @returns parsed HTTP link headers according to RFC 8288
-   */
-  private parseResponseHeaders(headers: HttpHeaders): Link | null {
-    const linkHeaders = headers.get(consts.gitHubApi.HEADER_LINK);
-    return linkHeaders && linkHeaders.length ? Link.parse(linkHeaders) : null; // TODO: Need to dig more in order to simplify this line.
   }
 }

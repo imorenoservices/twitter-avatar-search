@@ -1,4 +1,4 @@
 import { User } from './user';
-import { SearchResults } from './search-results-page';
+import { SearchResults, SearchResultsPaginationData } from './search-results-page';
 
-export { User, SearchResults as SearchResultsPage };
+export { User, SearchResults, SearchResultsPaginationData };
