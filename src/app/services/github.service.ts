@@ -29,7 +29,7 @@ export class GithubService {
 
   constructor(private http: HttpClient) {}
 
-  fetchLinkUri(linkUri: string) {
+  fetchLinkUri(linkUri: string): Observable<SearchResultsPaginationData<User>> {
     return this.http.get<SearchResults<User>>(linkUri, { observe: 'response' }).pipe(
       map((response) => {
         this.currentPageSubject.next(getPageNumberFromLinkUri(linkUri));

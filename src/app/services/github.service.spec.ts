@@ -1,65 +1,47 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { searchResultsPaginationDataMock } from '../model/testing/model-mocks';
+import { GithubService } from './github.service';
 
-describe('HttpClient testing', () => {
-  let httpClient: HttpClient;
+describe('GitHubService', () => {
   let httpTestingController: HttpTestingController;
+  let githubService: GithubService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
+      providers: [GithubService]
     });
 
-    httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
+    githubService = TestBed.inject(GithubService);
   });
 
   afterEach(() => {
     httpTestingController.verify();
   });
 
-  describe('Github Service', () => {
+  describe('#fetchLinkUri', () => {
+    const expectedData = searchResultsPaginationDataMock;
     it('should retrieve expected data from Github API', () => {
-      const testData = {
-        total_count: 1,
-        incomplete_results: false,
-        items: [
-          {
-            login: 'morenoisidro',
-            id: 30235159,
-            node_id: 'MDQ6VXNlcjMwMjM1MTU5',
-            avatar_url: 'https://avatars.githubusercontent.com/u/30235159?v=4',
-            gravatar_id: '',
-            url: 'https://api.github.com/users/morenoisidro',
-            html_url: 'https://github.com/morenoisidro',
-            followers_url: 'https://api.github.com/users/morenoisidro/followers',
-            following_url: 'https://api.github.com/users/morenoisidro/following{/other_user}',
-            gists_url: 'https://api.github.com/users/morenoisidro/gists{/gist_id}',
-            starred_url: 'https://api.github.com/users/morenoisidro/starred{/owner}{/repo}',
-            subscriptions_url: 'https://api.github.com/users/morenoisidro/subscriptions',
-            organizations_url: 'https://api.github.com/users/morenoisidro/orgs',
-            repos_url: 'https://api.github.com/users/morenoisidro/repos',
-            events_url: 'https://api.github.com/users/morenoisidro/events{/privacy}',
-            received_events_url: 'https://api.github.com/users/morenoisidro/received_events',
-            type: 'User',
-            site_admin: false,
-            score: 1
-          }
-        ]
-      };
-
-      httpClient
-        .get<any>('https://api.github.com/search/users', {
-          params: {
-            q: 'morenoisi in:login'
-          }
-        })
-        .subscribe((data) => expect(data).toEqual(testData));
-
-      const req = httpTestingController.expectOne('https://api.github.com/search/users?q=morenoisi%20in:login');
+      const linkUrl = `${GithubService.SEARCH_USER_URL}?q=more%20in:login&page=3&per_page=9`;
+      githubService.fetchLinkUri(linkUrl).subscribe((data) => expect(data).toEqual(expectedData));
+      const req = httpTestingController.expectOne(linkUrl);
       expect(req.request.method).toEqual('GET');
-      req.flush(testData);
+      req.flush(expectedData);
+    });
+  });
+
+  describe('#findUserInLogin', () => {
+    const expectedData = searchResultsPaginationDataMock;
+    it('should retrieve expected data from Github API', () => {
+      githubService.findUserInLogin('more').subscribe((data) => expect(data).toEqual(expectedData));
+      const req = httpTestingController.expectOne(
+        `${GithubService.SEARCH_USER_URL}?q=more%20in:login&page=1&per_page=9`
+      );
+      expect(req.request.method).toEqual('GET');
+      req.flush(expectedData);
     });
   });
 });
