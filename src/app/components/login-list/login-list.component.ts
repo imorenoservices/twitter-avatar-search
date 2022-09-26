@@ -19,6 +19,7 @@ export class LoginListComponent implements OnDestroy {
   totalPages = 0;
   paginationEnabled = false;
   isNewSearch = false;
+  isFirstSession = true;
 
   title = 'isidro-moreno-web';
   currentPage$: Observable<number>;
@@ -35,6 +36,7 @@ export class LoginListComponent implements OnDestroy {
 
   searchLogin(login: string) {
     this.isNewSearch = true;
+    this.isFirstSession = false;
     this.searchSubscription = this.githubService
       .findUserInLogin(login)
       .pipe(

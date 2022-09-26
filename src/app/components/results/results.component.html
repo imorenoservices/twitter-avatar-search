@@ -40,7 +40,7 @@
       </tbody>
     </nz-table>
     <div *ngIf="paginationEnabled">
-      <div class="pagination-container pagination-container-sm">
+      <div class="pagination-container">
         <app-github-pagination [currentPage$]="currentPage$" [lastPageIndex]="totalPages" (goToPage)="goToLink($event)">
         </app-github-pagination>
       </div>

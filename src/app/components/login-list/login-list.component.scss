@@ -1,7 +1,45 @@
+.search--container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .search--container {
+    width: 100%;
+  }
+}
+
 .results--container__disabled {
   opacity: 15%;
+  pointer-events: none;
 }
 
 .spinner--container {
   padding-top: 150px;
+}
+
+.welcome {
+  &--container {
+    margin: 0 auto;
+    opacity: 70%;
+    width: 300px;
+  }
+
+  &--message {
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.github-logo {
+  background-image: url("../../../assets/github-mark.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  height: 120px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
