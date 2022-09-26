@@ -1,45 +1,49 @@
-<ng-container *ngIf="userResultList">
-  <nz-table
-    #userTable
-    nzSize="middle"
-    [nzLoading]="isLoading$ | async"
-    [nzFrontPagination]="false"
-    [nzData]="userResultList"
-    nzTableLayout="fixed"
-  >
-    <thead>
-      <tr>
-        <th nzWidth="150px" id="login">Login</th>
-        <th nzWidth="75px" id="type">Type</th>
-        <th id="avatar">Avatar URL</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of userTable.data">
-        <td
-          nzBreakWord="false"
-          nz-tooltip
-          [nzTooltipTitle]="user.login"
-          nzTooltipPlacement="bottom"
-          [headers]="'login ' + user.login"
-        >
-          {{ user.login }}
-        </td>
-        <td nzEllipsis [headers]="'type' + user.type">{{ user.type }}</td>
-        <td
-          nzEllipsis
-          nz-tooltip
-          [nzTooltipTitle]="user.avatar_url"
-          nzTooltipPlacement="bottomLeft"
-          [headers]="'avatar ' + user.id"
-        >
-          <a (click)="openImageInNewTab(user.avatar_url)">{{ user.avatar_url }}</a>
-        </td>
-      </tr>
-    </tbody>
-  </nz-table>
-  <ng-container *ngIf="paginationEnabled">
-    <app-github-pagination [currentPage$]="currentPage$" [lastPageIndex]="totalPages" (goToPage)="goToLink($event)">
-    </app-github-pagination>
+<div class="results-container">
+  <ng-container *ngIf="userResultList">
+    <nz-table
+      #userTable
+      nzSize="middle"
+      [nzLoading]="isLoading$ | async"
+      [nzFrontPagination]="false"
+      [nzData]="userResultList"
+      nzTableLayout="fixed"
+    >
+      <thead>
+        <tr>
+          <th nzWidth="150px" id="login">Login</th>
+          <th nzWidth="75px" id="type">Type</th>
+          <th id="avatar">Avatar URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userTable.data">
+          <td
+            nzBreakWord="false"
+            nz-tooltip
+            [nzTooltipTitle]="user.login"
+            nzTooltipPlacement="bottom"
+            [headers]="'login ' + user.login"
+          >
+            {{ user.login }}
+          </td>
+          <td nzEllipsis [headers]="'type' + user.type">{{ user.type }}</td>
+          <td
+            nzEllipsis
+            nz-tooltip
+            [nzTooltipTitle]="user.avatar_url"
+            nzTooltipPlacement="bottomLeft"
+            [headers]="'avatar ' + user.id"
+          >
+            <a (click)="openImageInNewTab(user.avatar_url)">{{ user.avatar_url }}</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <div *ngIf="paginationEnabled">
+      <div class="pagination-container pagination-container-sm">
+        <app-github-pagination [currentPage$]="currentPage$" [lastPageIndex]="totalPages" (goToPage)="goToLink($event)">
+        </app-github-pagination>
+      </div>
+    </div>
   </ng-container>
-</ng-container>
+</div>

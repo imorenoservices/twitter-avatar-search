@@ -42,18 +42,21 @@ The following items describe the main tech guidelines I took in order to share s
 ### Version Control and CI
 
 #### GitHub:
-  - Follow "rebase/linear history" workflow though PRs to dev (check closed PRs)
-  - Enable GitHub Actions for build checks (Code coverage, Unit Tests, Code formatting checks, other Node CI GitHub Actions)
-  - ![image](https://user-images.githubusercontent.com/30235159/192309668-3ba5883e-55a9-4a22-8ff8-3d7a7ee4483d.png)
-  #### GitHub Actions CI details:
-  - ![image](https://user-images.githubusercontent.com/30235159/192310894-9f14698a-2b53-4cba-a62e-74e174660964.png)
+
+- Follow "rebase/linear history" workflow though PRs to dev (check closed PRs)
+- Enable GitHub Actions for build checks (Code coverage, Unit Tests, Code formatting checks, other Node CI GitHub Actions)
+- ![image](https://user-images.githubusercontent.com/30235159/192309668-3ba5883e-55a9-4a22-8ff8-3d7a7ee4483d.png)
+
+#### GitHub Actions CI details:
+
+- ![image](https://user-images.githubusercontent.com/30235159/192310894-9f14698a-2b53-4cba-a62e-74e174660964.png)
 
 #### Netlify:
-  - Integrate Netlify with repository
-  - Automatic "Netlify Deploy Previews" for each PR
-  - Netlify Deployment details integration to PRs as comments
-  - ![image](https://user-images.githubusercontent.com/30235159/192309537-c34576b8-1f37-48f3-a57e-0f046226ca01.png)
 
+- Integrate Netlify with repository
+- Automatic "Netlify Deploy Previews" for each PR
+- Netlify Deployment details integration to PRs as comments
+- ![image](https://user-images.githubusercontent.com/30235159/192309537-c34576b8-1f37-48f3-a57e-0f046226ca01.png)
 
 # Development Environment
 

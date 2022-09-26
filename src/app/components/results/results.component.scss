@@ -1,0 +1,17 @@
+.results-container {
+  padding: 20px;
+
+  .pagination-container {
+    display: flex;
+    justify-content: end;
+  }
+
+  @media screen and (max-width: 480px) {
+    .pagination-container-sm {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
