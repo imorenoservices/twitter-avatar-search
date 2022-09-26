@@ -12,10 +12,15 @@ export class ResultsComponent {
   @Input() userResultList: User[] | null = null;
   @Input() paginationEnabled = false;
   @Input() currentPage$: Observable<number> = of(1);
+  @Input() isLoading$: Observable<boolean> = of(false);
   @Input() totalPages = 1;
   @Output() goToPage = new EventEmitter<LinksRelation>();
 
   public goToLink(rel: LinksRelation) {
     this.goToPage.emit(rel);
+  }
+
+  openImageInNewTab(avatarUrl: string) {
+    window.open(avatarUrl, '_blank');
   }
 }

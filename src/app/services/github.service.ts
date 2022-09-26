@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 
 import { consts } from '../consts';
 import { SearchResults, SearchResultsPaginationData, User } from '../model';
@@ -26,14 +26,20 @@ export class GithubService {
   private readonly itemsPerPage = consts.paginationConfig.itemsPerPage;
 
   currentPageSubject = new BehaviorSubject<number>(1);
+  isLoadingSubject = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
 
   fetchLinkUri(linkUri: string): Observable<SearchResultsPaginationData<User>> {
+    this.isLoadingSubject.next(true);
     return this.http.get<SearchResults<User>>(linkUri, { observe: 'response' }).pipe(
       map((response) => {
         this.currentPageSubject.next(getPageNumberFromLinkUri(linkUri));
         return this.mapResponseToPaginationData(response);
+      }),
+      catchError((err) => {
+        this.isLoadingSubject.next(false);
+        return throwError(() => new Error(err));
       })
     );
   }
@@ -48,7 +54,13 @@ export class GithubService {
         },
         observe: 'response'
       })
-      .pipe(map((response) => this.mapResponseToPaginationData(response)));
+      .pipe(
+        map((response) => this.mapResponseToPaginationData(response)),
+        catchError((err) => {
+          this.isLoadingSubject.next(false);
+          return throwError(() => new Error(err));
+        })
+      );
   }
 
   private mapResponseToPaginationData(response: HttpResponse<SearchResults<User>>) {
@@ -57,6 +69,7 @@ export class GithubService {
       paginationInfo,
       searchResults: response.body as SearchResults<User>
     };
+    this.isLoadingSubject.next(false);
     return result;
   }
 }

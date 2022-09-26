@@ -20,6 +20,9 @@ export class ErrorHandlerService implements ErrorHandler {
         case 401:
           router.navigate([ROUTE_NAMES.ERROR, ROUTE_NAMES.UNAUTHORIZED]);
           break;
+        // UX notes:
+        // This is an experience-blocking scenario.
+        // Displaying a countdown until a user can search again may improve the experience.
         case 403:
           router.navigate([ROUTE_NAMES.ERROR, ROUTE_NAMES.RATE_EXCEEDED]);
           break;

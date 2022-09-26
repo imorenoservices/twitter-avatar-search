@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import Link from 'http-link-header';
-import { Observable, Subscription, tap } from 'rxjs';
+import { Observable, Subscription, tap, catchError, throwError } from 'rxjs';
 import { User } from 'src/app/model';
 import { LinksRelation, SearchResultsPaginationData } from 'src/app/model/search-results-page';
 import { GithubService } from 'src/app/services/github.service';
@@ -18,12 +18,15 @@ export class LoginListComponent implements OnDestroy {
   userResultList: User[] | null = null;
   totalPages = 0;
   paginationEnabled = false;
+  isNewSearch = false;
 
   title = 'isidro-moreno-web';
   currentPage$: Observable<number>;
+  isLoading$: Observable<boolean>;
 
   constructor(private githubService: GithubService) {
     this.currentPage$ = this.githubService.currentPageSubject.asObservable();
+    this.isLoading$ = this.githubService.isLoadingSubject.asObservable();
   }
 
   ngOnDestroy(): void {
@@ -31,10 +34,21 @@ export class LoginListComponent implements OnDestroy {
   }
 
   searchLogin(login: string) {
-    this.searchSubscription = this.githubService.findUserInLogin(login).subscribe((searchResultsData) => {
-      this.paginationEnabled = !!searchResultsData.paginationInfo;
-      this.updateTableAndPaginationControls(searchResultsData);
-    });
+    this.isNewSearch = true;
+    this.searchSubscription = this.githubService
+      .findUserInLogin(login)
+      .pipe(
+        tap((searchResultsData) => {
+          this.paginationEnabled = !!searchResultsData.paginationInfo;
+          this.updateTableAndPaginationControls(searchResultsData);
+          this.isNewSearch = false;
+        }),
+        catchError((err) => {
+          this.isNewSearch = false;
+          return throwError(() => new Error(err));
+        })
+      )
+      .subscribe();
   }
 
   goToLink(rel: LinksRelation) {

@@ -1,9 +1,15 @@
 <app-search (search)="searchLogin($event)"></app-search>
-<app-results
-  [userResultList]="userResultList"
-  [paginationEnabled]="paginationEnabled"
-  [currentPage$]="currentPage$"
-  [totalPages]="totalPages"
-  (goToPage)="goToLink($event)"
->
-</app-results>
+<div class="spinner--container" *ngIf="isNewSearch">
+  <nz-spin nzTip="Searching..."> </nz-spin>
+</div>
+<div [ngClass]="{ 'results--container__disabled': isNewSearch }">
+  <app-results
+    [userResultList]="userResultList"
+    [paginationEnabled]="paginationEnabled"
+    [currentPage$]="currentPage$"
+    [totalPages]="totalPages"
+    [isLoading$]="isLoading$"
+    (goToPage)="goToLink($event)"
+  >
+  </app-results>
+</div>
