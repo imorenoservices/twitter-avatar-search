@@ -1,8 +1,31 @@
-<form autocomplete="off" nz-form (ngSubmit)="triggerSearch()" [formGroup]="loginForm">
-  <nz-input-group nzPrefixIcon="user" nzSearch [nzSuffix]="searchTpl">
-    <input nz-input formControlName="login" type="text" placeholder="Login" />
-    <ng-template #searchTpl>
-      <button nz-button nzType="primary" type="submit" nzSearch>Search</button>
+<div class="form--container">
+  <form autocomplete="off" nz-form (ngSubmit)="triggerSearch()" [formGroup]="loginForm">
+    <nz-input-group
+      nzPrefixIcon="user"
+      nzSearch
+      [nzStatus]="getFormStatus()"
+      [nzSuffix]="suffixClear"
+      [nzAddOnAfter]="suffixButton"
+    >
+      <input nz-input formControlName="login" type="text" nzSize="large" placeholder="Login" />
+    </nz-input-group>
+    <div class="input-error" *ngIf="login.errors?.['maxlength']">
+      Please entre a login name with less than 256 characters
+    </div>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" nzSize="large" type="submit" nzSearch [disabled]="!!login.errors">
+        Search
+      </button>
     </ng-template>
-  </nz-input-group>
-</form>
+    <ng-template #suffixClear>
+      <span
+        nz-icon
+        class="ant-input-clear-icon"
+        nzTheme="fill"
+        nzType="close-circle"
+        *ngIf="login.value"
+        (click)="clearSearch()"
+      ></span>
+    </ng-template>
+  </form>
+</div>

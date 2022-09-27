@@ -32,6 +32,9 @@ export class ErrorHandlerService implements ErrorHandler {
         case 500:
           router.navigate([ROUTE_NAMES.ERROR, ROUTE_NAMES.SERVER_ERROR]);
           break;
+        case 503:
+          router.navigate([ROUTE_NAMES.ERROR, ROUTE_NAMES.SERVER_ERROR]); // TODO: Display a nice message related to 'Service Unavaliable'
+          break;
         default:
           break;
       }

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, OnDestroy, OnInit, DoCheck } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   @Output() search = new EventEmitter<string>();
 
   constructor(private fb: FormBuilder) {
-    this.loginForm = this.fb.group({ login: this.fb.control('') });
+    this.loginForm = this.fb.group({ login: ['', Validators.maxLength(256)] }); // GitHub API restriction
   }
 
   get login(): FormControl {
@@ -24,6 +24,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.login.reset();
+  }
+
+  getFormStatus() {
+    return this.loginForm.status === 'INVALID' ? 'error' : '';
+  }
+
+  clearSearch() {
     this.login.reset();
   }
 
