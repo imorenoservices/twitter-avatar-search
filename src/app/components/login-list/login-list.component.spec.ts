@@ -36,9 +36,6 @@ describe('LoginListComponent', () => {
       ]
     }).compileComponents();
 
-    httpClient = TestBed.inject(HttpClient);
-    httpTestingController = TestBed.inject(HttpTestingController);
-
     fixture = TestBed.createComponent(LoginListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

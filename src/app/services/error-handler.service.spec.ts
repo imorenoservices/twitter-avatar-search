@@ -24,7 +24,6 @@ describe('ErrorHandlerService', () => {
     errorHandlerService = TestBed.inject(ErrorHandlerService);
     location = TestBed.inject(Location);
     router = TestBed.inject(Router);
-    fixture = TestBed.createComponent(AppComponent);
     router.initialNavigation();
   });
 
