@@ -2,6 +2,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/11df3328-7411-4a89-8686-5d32236b7140/deploy-status)](https://app.netlify.com/sites/wondrous-kitsune-c7984a/deploys) ![Build checks](https://github.com/imorenoservices/isidro-moreno-web/actions/workflows/node.js.yml/badge.svg)
 
+> [Coverage Report](https://github.com/imorenoservices/isidro-moreno-web#coverage-reports)
+
 ### Test Assignment:
 
 > https://www.notion.so/Web-Angular-ReactJS-Test-Assignment-308d84eaa51c4f22b1f65d60efcd7186
@@ -94,11 +96,21 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 Run `npm run test` to execute the unit tests via [Jest](https://jestjs.io/docs/28.x/getting-started).
 
-### Coverage reports in HTML format
+# Coverage Reports:
+
+## HTML Report Generation:
+
+> Run `npm run test`
+
+## Coverage reports in HTML format
 
 Every time tests are run a text report is printed in the console and an [Istanbul](https://istanbul.js.org/) HTML report is stored under:
 
-> `./coverage/lcov-report/isidro-moreno-web/index.html`
+> `coverage/lcov-report/isidro-moreno-web/index.html`
+
+#### Current coverage status:
+
+![image](https://user-images.githubusercontent.com/30235159/192441018-0d969c20-0e5e-4c7b-9bb2-863205a66be3.png)
 
 # Attachments / Other notes
 
