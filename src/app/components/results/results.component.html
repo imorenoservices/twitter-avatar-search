@@ -10,7 +10,15 @@
     >
       <thead>
         <tr>
-          <th nzWidth="150px" id="login">Login</th>
+          <th
+            nzWidth="150px"
+            id="login"
+            [nzSortOrder]="loginColumn.sortOrder"
+            [nzSortFn]="loginColumn.sortFn"
+            [nzSortDirections]="loginColumn.sortDirections"
+          >
+            Login
+          </th>
           <th nzWidth="75px" id="type">Type</th>
           <th id="avatar">Avatar URL</th>
         </tr>

@@ -55,7 +55,10 @@ export class GithubService {
         observe: 'response'
       })
       .pipe(
-        map((response) => this.mapResponseToPaginationData(response)),
+        map((response) => {
+          this.currentPageSubject.next(pageNumber);
+          return this.mapResponseToPaginationData(response);
+        }),
         catchError((err) => {
           this.isLoadingSubject.next(false);
           return throwError(() => new Error(err));
