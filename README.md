@@ -51,12 +51,13 @@ Every time tests are run a **text report** is printed in the console and an **[I
 
 # Features summary;
 
-Features released:
+Features released as of September 26th:
 
 - Search input component that triggers API query given a `login` string input.
 - Results component:
   - Display paginated results in a table if input `string` matches a `login` field. More info [here](https://docs.github.com/en/search-github/searching-on-github/searching-users#search-by-account-name-full-name-or-public-email)
   - Provide page navigation through **custom pagination component** (navigation information is retrieved from [API response headers](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#link-header)
+  - **Client side** sorting by `login` column. (Client side sorting for **_current page_** data displayed in the table). Unfortunatelly Github doensn't provide `login` as a sort parameter for server-side sorting. [More info here](https://docs.github.com/en/rest/search#search-users).
 - Loading indicators for:
   - New search
   - Page navigation
@@ -85,7 +86,7 @@ The following items describe the main guidelines I took in order to share skills
 
 ## GitHub:
 
-- Follow "rebase/linear history" workflow though PRs to dev (check closed PRs)
+- Follow rebase/linear history
 - Enable GitHub Actions for build checks (Code coverage, Unit Tests, Code formatting checks, other Node CI GitHub Actions)
 
 ![image](https://user-images.githubusercontent.com/30235159/192309668-3ba5883e-55a9-4a22-8ff8-3d7a7ee4483d.png)
