@@ -1,0 +1,6 @@
+@use "sass:math";
+@use "variables";
+
+@function torem($px) {
+  @return math.div($px, variables.$rootSize) * 1rem;
+}

@@ -1,19 +1,19 @@
-<div class="search--container">
+<div class="search__container">
   <app-search (search)="searchLogin($event)"></app-search>
 </div>
 <ng-container *ngIf="isFirstSession; else showResultsTpl">
-  <div class="welcome--container">
+  <div class="welcome__container">
     <div class="github-logo"></div>
-    <div class="welcome--message">
+    <div class="welcome__message">
       <span>Please, use the search box in order to find GitHub users by </span>
-      <span class="font--mono highlight">login</span>
+      <span class="font__mono highlight">login</span>
       <span> field</span>
     </div>
   </div>
 </ng-container>
 <ng-template #showResultsTpl>
   <ng-container *ngIf="isNewSearch; else elseTemplate">
-    <div class="spinner--container">
+    <div class="spinner__container">
       <nz-spin nzTip="Searching..."> </nz-spin>
     </div>
   </ng-container>

@@ -1,0 +1,17 @@
+$rootSize: 16;
+
+// Color values
+$color-blue: #004c91;
+
+// Font Values
+$font-family--monospace: monospace;
+
+// Font Classes
+.font--mono {
+  font-family: $font-family--monospace;
+}
+
+// Misc
+.highlight {
+  color: $color-blue;
+}
