@@ -2,7 +2,16 @@
 
 <!-- [![Netlify Status](https://api.netlify.com/api/v1/badges/11df3328-7411-4a89-8686-5d32236b7140/deploy-status)](https://app.netlify.com/sites/wondrous-kitsune-c7984a/deploys) ![Build checks](https://github.com/imorenoservices/isidro-moreno-web/actions/workflows/node.js.yml/badge.svg) -->
 
+# Screenshots:
+<img width="1796" alt="Screenshot 2023-07-06 at 04 33 58" src="https://github.com/imorenoservices/twitter-avatar-search/assets/30235159/f404ebc6-e42d-4de6-87d3-8f4a0c65c0f4">
+<img width="1840" alt="Screenshot 2023-07-06 at 04 36 31" src="https://github.com/imorenoservices/twitter-avatar-search/assets/30235159/1235bee7-a4b6-4f19-b5f7-28da0b281417">
+<img width="1796" alt="Screenshot 2023-07-06 at 04 36 54" src="https://github.com/imorenoservices/twitter-avatar-search/assets/30235159/cdc05b43-77b6-42e6-8833-afae14cfa87f">
+<img width="1840" alt="Screenshot 2023-07-06 at 04 37 32" src="https://github.com/imorenoservices/twitter-avatar-search/assets/30235159/0171ae79-9a4b-470f-8d0b-6d763f2fdbc9">
+<img width="1796" alt="Screenshot 2023-07-06 at 04 35 58" src="https://github.com/imorenoservices/twitter-avatar-search/assets/30235159/a9d5d404-ba9c-4480-aa9e-bb40f43fc71e">
+<img width="1840" alt="Screenshot 2023-07-06 at 04 37 53" src="https://github.com/imorenoservices/twitter-avatar-search/assets/30235159/7d802470-4fc5-4c4b-bb5a-725e5ae7b4ac">
+
 # Requirements:
+
 
 ## Overview
 
